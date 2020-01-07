@@ -1,0 +1,100 @@
+#sliderId
+{
+	position: relative;
+	width: 100%;
+  	margin: 20px auto;
+  	padding: inherit;
+}
+
+#sliderId img{
+	position: absolute;
+	width: 100%;
+	height: auto;
+	opacity: 0;
+	transition: opacity 1.5s;
+}
+
+button{
+	background-color: black;
+	color: white;
+	bottom: 0; 
+
+} 
+
+#sliderId img.showed {
+	opacity: 1;
+}
+
+.chevrons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.controllers, .chevrons{
+	position: absolute;
+	font-size: 30px;
+	padding: 10px;
+	width: 100%;
+}
+
+#sliderId a{
+	color: #fff;
+}
+
+#map{
+	height: 600px;
+	border: 8px double teal;
+}
+
+
+.marker
+{
+	cursor: pointer;
+}
+
+#appArrea{
+	background-color: teal;
+	padding-bottom: 1px;
+}
+
+#data, #status{
+	text-align: center;
+	color: white;
+}
+
+#book, #canvas-block{
+	display: none;
+}
+
+#book legend, span{
+	color: burlywood;
+}
+#nom, #prenom {
+	background-color: burlywood;
+    border: inherit;
+    text-align: center;
+}
+
+form{
+	margin-bottom: 25px;
+}
+
+canvas{
+	border: 2px solid burlywood;
+	margin: 20px;
+}
+
+#error{
+	display: none;
+}
+
+#infoField{
+	visibility: hidden;
+}
+
+#status{
+	margin: 5px;
+	visibility: hidden;
+}

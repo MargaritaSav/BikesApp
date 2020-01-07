@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reservez votre vélo|Nantes</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+    <script src="https://kit.fontawesome.com/a616e7a775.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+   <script type="text/javascript" src="./script/Slider.js"></script>
+   <script type="text/javascript" src="./script/Station.js"></script>
+   <script type="text/javascript" src="./script/Map.js"></script>
+   <script type="text/javascript" src="./script/Form.js"></script>
+   <script type="text/javascript" src="./script/Booking.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container" id="sliderId">
+            <img src="img/1.png" id="sliderItem" class="sliderItems">
+            <img src="img/2.png" class="sliderItems">
+            <img src="img/3.png" class="sliderItems">
+            <img src="img/4.png" class="sliderItems">
+            <div class="chevrons" id="navSlider">
+                <a href="#" id="prev"><i class="fas fa-chevron-left" ></i></a>
+               <a href="#" id="next"><i class="fas fa-chevron-right" ></i></a>
+            </div>
+            <div class="controllers">
+            <a href="#" id="pause"><i class="far fa-pause-circle"></i></a>
+            <a href="#" id="start"><i class="far fa-play-circle"></i></a>
+            </div>
+        </div>  
+    </header>
+	<div class="container" id="appArrea">
+		<div class="row">
+			<div id="map" class="col-md-6 col-12"></div>
+			<div id="data" class="col-md-6 col-12">
+                <div class="alert alert-success" role="alert" id="infoField">
+                    Votre réservation est réussie
+                </div>
+                <form name="book" id="book">
+                    <fieldset>
+                    <legend> Détails de la station </legend>
+                    <p>Nom de la station : <span id="name"> </span></p>
+                    <p>Adresse : <span id="adresse"> </span></p>
+                    <p>Nombre de places : <span id="places"></span> </p>
+                    <p>Nombre de vélos disponibles : <span id="available"></span> </p>
+                    <p>Nom : <br/> <input required type="text" name="nom" id="nom" value=""  /></p>
+                    <p>Prénom : <br/> <input  required type="text" name="prenom" id="prenom" /></p>
+                    <input class="btn btn-outline-light" type="submit" value="Réserver" id="submit"/>
+                    </fieldset>
+                </form>
+
+                <div class="alert alert-danger collapse" role="alert" id="error">  error</div>
+                <div id="canvas-block">
+                     <canvas id="canvas" >Ce navigateur ne supporte pas le canvas</canvas><br/>
+                    <button class="btn btn-outline-light" id="validate">
+                        Valider
+                    </button>
+                    <button class="btn btn-outline-light" id="clear" >
+                        Recommencer
+                    </button>
+                    
+                </div>
+            </div>
+            
+		</div>
+        <div id="status">
+            <p>
+                Vélo réservé à la station <span id="stationName"> </span> par <span id="nomPrenom"> </span> <br/> 
+                Temps restant : <span id="timer"></span> <br/>
+                 <button class="btn btn-warning" id="cancel">Annuler la réservation</button> 
+            </p>
+    </div>
+	</div>
+ 	
+
+ 
+ <script type="text/javascript">
+
+ 	let slider = new Slider();
+	new Map();
+    new Form();
+    
+
+</script>
+
+</body>
+</html>
