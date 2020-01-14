@@ -50,6 +50,7 @@ class Map {
 					let splitName = data[i].name.split('-');
 					station.getInfo(splitName[1], data[i].address, data[i].bike_stands, data[i].available_bikes)
 					station.saveInfo(splitName[1], data[i].address, data[i].available_bikes)
+					window.scrollBy(0, window.innerHeight);
 					})
 				}
 			}

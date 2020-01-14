@@ -3,6 +3,7 @@ class Booking {
 		this.lastName = lastName;
 		this.firstName = firstName; 
 		this.signature;
+
 		this.timer = null;
 		this.booking = null;
 		this.validityTime = validityTime;

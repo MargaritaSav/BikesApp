@@ -11,7 +11,7 @@ class Form {
 		this.infoField = document.getElementById("infoField");
 		
 		this.setValues();
-		this.booking = new Booking(nom.value, prenom.value, 0.25);
+		this.booking = new Booking(nom.value, prenom.value, 15);
 		this.initializeCanvas(this.validateCanvBtn, this.clearCanvBtn);
 		this.onreload();
 
@@ -73,22 +73,21 @@ class Form {
 			ctx.beginPath();
 		})
 
-
-		canv.addEventListener("mousemove", (e) => {
-			if (isMouseDown) {
-				coords.push([e.offsetX, e.offsetY]);
-			}
-		})
-
 		canv.addEventListener('mousemove', (e) => {
+			coords.push([e.offsetX, e.offsetY]);
 			this.draw(isMouseDown, ctx, e);	
 		});
 
-		canv.addEventListener('touchmove', (e) => {
-			this.draw(isMouseDown, ctx, e);	
-		});
+		
+		document.body.addEventListener("touchmove", (e)=> {
+		  if (e.target == canvas) {
+		    e.preventDefault();
+		    coords.push([e.touches[0].clientX, e.touches[0].clientY]);
+		    this.draw(isMouseDown, ctx, e);	
+		  }
+		}, {passive: false});
 
-
+		// création de la réservation, initialization du minuteur
 		validateCanvBtn.addEventListener("click", (e) => {
 			e.preventDefault();
 			if(this.check(coords)){
@@ -110,17 +109,30 @@ class Form {
 
 	draw(isEvent, ctx, e){
 		if (isEvent) {
-			ctx.lineTo(e.offsetX, e.offsetY);
+			let x;
+			let y;
+			let rect = canvas.getBoundingClientRect();
+			//Pour les mobiles
+			if (e.type=="touchmove") {
+				x = e.touches[0].clientX - rect.left;
+				y = e.touches[0].clientY - rect.top;
+			} else {
+				x = e.offsetX;
+				y = e.offsetY;
+			}
+			
+			ctx.lineTo(x, y);
 			ctx.stroke();
 
 			ctx.beginPath();
-			ctx.arc(e.offsetX, e.offsetY, 2, 0, Math.PI * 2);
+			ctx.arc(x, y, 2, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.beginPath();
-			ctx.moveTo(e.offsetX, e.offsetY);
-		}
+			ctx.moveTo(x, y);
+	
 	}
+}
 
 	clearCanvas(canv, ctx, coords){
 		if(coords.length){
@@ -171,7 +183,6 @@ class Form {
 			return false;
 		};
 		this.infoField.style.visibility = "visible";
-
 		return true;
 		
 	}
@@ -186,7 +197,5 @@ class Form {
 			this.booking.countDown(this.booking.validityTime);
 		}
 	}
-
-
 
 }
