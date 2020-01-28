@@ -11,7 +11,7 @@ class Form {
 		this.infoField = document.getElementById("infoField");
 		
 		this.setValues();
-		this.booking = new Booking(nom.value, prenom.value, 15);
+		this.booking = new Booking(nom.value, prenom.value, 1);
 		this.initializeCanvas(this.validateCanvBtn, this.clearCanvBtn);
 		this.onreload();
 
@@ -173,14 +173,16 @@ class Form {
 			return false;
 		}
 
-		if (JSON.parse(sessionStorage.getItem("chosenStation")).quantity<=0){
+		if (JSON.parse(sessionStorage.getItem("chosenStation")).quantity<=0 ){
 			this.showError(3);
 			return false;
 		}
 
-		if (this.booking.stationNameBooked.innerHTML == document.getElementById("name").innerHTML) {
-			this.showError(4);	
-			return false;
+		if (sessionStorage.getItem("BookedStation")!= "Cette reservation est annulée"){
+			if (JSON.parse(sessionStorage.getItem("chosenStation")).name == JSON.parse(sessionStorage.getItem("BookedStation")).name ) {
+				this.showError(4);	
+				return false;
+			}
 		};
 		this.infoField.style.visibility = "visible";
 		return true;
