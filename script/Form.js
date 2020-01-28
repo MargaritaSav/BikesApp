@@ -178,7 +178,7 @@ class Form {
 			return false;
 		}
 
-		if (sessionStorage.getItem("BookedStation")!= "Cette reservation est annulée"){
+		if (sessionStorage.getItem("BookedStation")!= "Cette reservation est annulée"&& sessionStorage.getItem("BookedStation")){
 			if (JSON.parse(sessionStorage.getItem("chosenStation")).name == JSON.parse(sessionStorage.getItem("BookedStation")).name ) {
 				this.showError(4);	
 				return false;
